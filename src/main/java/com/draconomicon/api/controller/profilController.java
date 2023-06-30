@@ -11,19 +11,18 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 import com.draconomicon.api.model.Profil;
 import com.draconomicon.api.service.ProfilService;
-import com.draconomicon.api.Hasher;
 
 @RestController
 public class profilController {
 	
 	@Autowired
 	private ProfilService profilService;
-	@Autowired
-	private Hasher hasher;
 	
 	@GetMapping("/profils")
 	public String getProfil() {
@@ -41,12 +40,12 @@ public class profilController {
 	}
 	@PostMapping("/profils")
 	public Profil createProfil(@RequestBody Profil profil) {
-		profil.setPassword(hasher.hash(profil.getPassword()));
+		//profil.setPassword(passwordEncoder.encode(profil.getPassword()));
 		return profilService.saveProfil(profil);
 	}
 	@PutMapping("/profils/{id}")
 	public Profil updateProfil(@PathVariable("id") final Long id, @RequestBody Profil profil) {
-		profil.setPassword(hasher.hash(profil.getPassword()));
+		//profil.setPassword(passwordEncoder.encode(profil.getPassword()));
 		Optional<Profil> e = profilService.getProfil(id);
 		if(e.isPresent()) {
 			Profil currentProfil = e.get();
@@ -83,7 +82,7 @@ public class profilController {
 	}
 	@PatchMapping("/profils/{id}")
 	public Profil patchProfil(@PathVariable("id") final Long id, @RequestBody Profil profil){
-		profil.setPassword(hasher.hash(profil.getPassword()));		
+		//profil.setPassword(passwordEncoder.encode(profil.getPassword()));		
 		Optional<Profil> e = profilService.getProfil(id);
 		if(e.isPresent()) {
 			Profil currentProfil = e.get();
