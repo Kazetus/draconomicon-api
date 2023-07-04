@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.draconomicon.api.model.Role;
 import com.draconomicon.api.service.RoleService;
-import com.google.gson.Gson;
 
 @RestController
 public class RoleController {
@@ -23,15 +22,15 @@ public class RoleController {
 	private RoleService roleService;
 	
 	@GetMapping("/roles")
-	public String getRole() {
-		return new Gson().toJson(roleService.getRole());
+	public Iterable<Role> getRole() {
+		return roleService.getRole();
 	}
 	
 	@GetMapping("/roles/{id}")
-	public String getRole(@PathVariable("id") final Long id){
+	public Role getRole(@PathVariable("id") final Long id){
 		Optional<Role> role = roleService.getRole(id);
 		if(role.isPresent()) {
-			return new Gson().toJson(role.get());
+			return role.get();
 		} else {
 			return null;
 		}

@@ -1,7 +1,6 @@
 package com.draconomicon.api.controller;
 
 import java.util.Optional;
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,15 +21,15 @@ public class StadeController {
 	private StadeService stadeService;
 	
 	@GetMapping("/stades")
-	public String getStade() {
-		return new Gson().toJson(stadeService.getStade());
+	public Iterable<Stade> getStade() {
+		return stadeService.getStade();
 	}
 	
 	@GetMapping("/stades/{id}")
-	public String getStade(@PathVariable("id") final Long id){
+	public Stade getStade(@PathVariable("id") final Long id){
 		Optional<Stade> stade = stadeService.getStade(id);
 		if(stade.isPresent()) {
-			return new Gson().toJson(stade.get());
+			return stade.get();
 		} else {
 			return null;
 		}

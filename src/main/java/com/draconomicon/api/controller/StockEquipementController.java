@@ -1,7 +1,6 @@
 package com.draconomicon.api.controller;
 
 import java.util.Optional;
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,15 +20,15 @@ public class StockEquipementController {
 	private StockEquipementService stockEquipementService;
 	
 	@GetMapping("/stockEquipements")
-	public String getStockEquipement() {
-		return new Gson().toJson(stockEquipementService.getStockEquipement());
+	public Iterable<StockEquipement> getStockEquipement() {
+		return stockEquipementService.getStockEquipement();
 	}
 	
 	@GetMapping("/stockEquipements/{id}")
-	public String getStockEquipement(@PathVariable("id") final Long id){
+	public StockEquipement getStockEquipement(@PathVariable("id") final Long id){
 		Optional<StockEquipement> stockEquipement = stockEquipementService.getStockEquipement(id);
 		if(stockEquipement.isPresent()) {
-			return new Gson().toJson(stockEquipement.get());
+			return stockEquipement.get();
 		} else {
 			return null;
 		}

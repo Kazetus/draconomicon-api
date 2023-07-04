@@ -5,6 +5,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapKey;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import lombok.Data;
@@ -29,6 +32,9 @@ public class Profil {
 	
 	@Column(name="genre_profil")
 	 private Boolean genreProfil;
+	
+	@ManyToOne
+	 private Role role;
 	
 	@Column(name="id_role")
 	 private int idRole;

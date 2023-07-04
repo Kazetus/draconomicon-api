@@ -14,22 +14,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.draconomicon.api.model.Topic;
 import com.draconomicon.api.service.TopicService;
-import com.google.gson.Gson;
 
 public class TopicController {
 	@Autowired
 	private TopicService topicService;
 	
 	@GetMapping("/topics")
-	public String getTopic() {
-		return new Gson().toJson(topicService.getTopic());
+	public Iterable<Topic> getTopic() {
+		return topicService.getTopic();
 	}
 	
 	@GetMapping("/topics/{id}")
-	public String getTopic(@PathVariable("id") final Long id){
+	public Topic getTopic(@PathVariable("id") final Long id){
 		Optional<Topic> topic = topicService.getTopic(id);
 		if(topic.isPresent()) {
-			return new Gson().toJson(topic.get());
+			return topic.get();
 		} else {
 			return null;
 		}

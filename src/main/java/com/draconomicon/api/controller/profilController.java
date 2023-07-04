@@ -1,7 +1,6 @@
 package com.draconomicon.api.controller;
 
 import java.util.Optional;
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,15 +24,15 @@ public class profilController {
 	private ProfilService profilService;
 	
 	@GetMapping("/profils")
-	public String getProfil() {
-		return new Gson().toJson(profilService.getProfil());
+	public Iterable<Profil> getProfil() {
+		return profilService.getProfil();
 	}
 	
 	@GetMapping("/profils/{id}")
-	public String getProfil(@PathVariable("id") final Long id){
+	public Profil getProfil(@PathVariable("id") final Long id){
 		Optional<Profil> profil = profilService.getProfil(id);
 		if(profil.isPresent()) {
-			return new Gson().toJson(profil.get());
+			return profil.get();
 		} else {
 			return null;
 		}
