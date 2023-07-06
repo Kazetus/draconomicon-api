@@ -24,8 +24,5 @@ public class Role {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	 private long idRole;
-	@OneToMany(mappedBy="role")
-	@MapKey(name = "idRole")
-	private Map<String, Profil> mapProfil;
 	 private String role;
 }

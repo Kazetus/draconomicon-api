@@ -1,9 +1,11 @@
 package com.draconomicon.api.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.draconomicon.api.model.Profil;
 
-public interface ProfilRepository extends CrudRepository<Profil, Long> {
-	
+public interface ProfilRepository extends JpaRepository<Profil, Long> {
+	Optional<Profil> findByUsername(String username);
 }

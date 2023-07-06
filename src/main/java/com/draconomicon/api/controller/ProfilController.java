@@ -18,7 +18,7 @@ import com.draconomicon.api.model.Profil;
 import com.draconomicon.api.service.ProfilService;
 
 @RestController
-public class profilController {
+public class ProfilController {
 	
 	@Autowired
 	private ProfilService profilService;
@@ -37,6 +37,10 @@ public class profilController {
 			return null;
 		}
 	}
+	@PostMapping("/login") 
+	public Profil logProfil(@RequestBody Profil profil) {
+		return profil;
+	}
 	@PostMapping("/profils")
 	public Profil createProfil(@RequestBody Profil profil) {
 		//profil.setPassword(passwordEncoder.encode(profil.getPassword()));
@@ -49,9 +53,9 @@ public class profilController {
 		if(e.isPresent()) {
 			Profil currentProfil = e.get();
 			
-			String pseudo = profil.getPseudo();
-			if(pseudo != null) {
-				currentProfil.setPseudo(pseudo);
+			String username = profil.getUsername();
+			if(username != null) {
+				currentProfil.setUsername(username);
 			}
 			String mail = profil.getMail();
 			if(mail != null) {
@@ -86,15 +90,15 @@ public class profilController {
 		if(e.isPresent()) {
 			Profil currentProfil = e.get();
 			
-			String pseudo = profil.getPseudo();
+			String username = profil.getUsername();
 			String mail = profil.getMail();
 			String password = profil.getPassword();
 			int age = profil.getAge();
 			int idRole = profil.getIdRole();
 			boolean genreProfil = profil.getGenreProfil();
 			boolean mineurMajeur = profil.getMineurMajeur();
-			if(pseudo != null && mail != null && password != null && age != 0 && idRole != 0) {
-				currentProfil.setPseudo(pseudo);
+			if(username != null && mail != null && password != null && age != 0 && idRole != 0) {
+				currentProfil.setUsername(username);
 				currentProfil.setMail(mail);
 				currentProfil.setMineurMajeur(mineurMajeur);
 				currentProfil.setPassword(password);
