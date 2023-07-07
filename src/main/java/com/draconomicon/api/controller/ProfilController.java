@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,15 +35,6 @@ public class ProfilController {
 		} else {
 			return null;
 		}
-	}
-	@PostMapping("/login") 
-	public Profil logProfil(@RequestBody Profil profil) {
-		return profil;
-	}
-	@PostMapping("/profils")
-	public Profil createProfil(@RequestBody Profil profil) {
-		//profil.setPassword(passwordEncoder.encode(profil.getPassword()));
-		return profilService.saveProfil(profil);
 	}
 	@PutMapping("/profils/{id}")
 	public Profil updateProfil(@PathVariable("id") final Long id, @RequestBody Profil profil) {

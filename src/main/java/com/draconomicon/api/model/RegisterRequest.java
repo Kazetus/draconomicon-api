@@ -1,4 +1,4 @@
-package com.draconomicon.api;
+package com.draconomicon.api.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,4 +14,8 @@ public class RegisterRequest {
 	private String username;
 	private String mail;
 	private String password;
+	private int age;
+	private Boolean genreProfil;
+	private Boolean mineurMajeur;
+	private int idRole;
 }

@@ -2,6 +2,8 @@ package com.draconomicon.api.config;
 
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,9 +19,11 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+@Configuration
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	private final JwtService jwtService = new JwtService();
-	private final UserDetailsService userDetailsService = null;
+	@Autowired
+	private UserDetailsService userDetailsService;
 	@Override
 	protected void doFilterInternal(
 			@NonNull HttpServletRequest request,

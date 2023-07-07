@@ -1,4 +1,4 @@
-package com.draconomicon.api;
+package com.draconomicon.api.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
