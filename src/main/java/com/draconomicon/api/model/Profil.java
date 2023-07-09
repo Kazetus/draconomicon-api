@@ -80,6 +80,11 @@ public class Profil implements UserDetails{
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
+		if(this.idRole == 1) {
+			this.setRole(Rank.ADMIN);
+		} else {
+			this.setRole(Rank.USER);
+		}
 		return role.getAuthorities();
 	}
 }
